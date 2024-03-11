@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjgi53u3gwakm"]
+
+[ext_resource type="Script" path="res://Item/Pick_Up/pick_up.gd" id="1_658x6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1tlf0"]
+radius = 16.2788
+
+[node name="Area2D" type="Area2D"]
+scale = Vector2(3.26855, 3.23443)
+collision_layer = 2
+script = ExtResource("1_658x6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.279201, 0.282146)
+shape = SubResource("CircleShape2D_1tlf0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.198, 0.2)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

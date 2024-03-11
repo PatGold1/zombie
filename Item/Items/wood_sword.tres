@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://cvgkroqac8jjt"]
+
+[ext_resource type="Script" path="res://Item/item_data.gd" id="1_7dcop"]
+[ext_resource type="Texture2D" uid="uid://bwb3xkmcw75pd" path="res://Item/item_atlas.tres" id="2_jmaoq"]
+
+[resource]
+script = ExtResource("1_7dcop")
+name = "Wooden Sword"
+description = "A  sword made from wood. "
+stackable = false
+texture = ExtResource("2_jmaoq")

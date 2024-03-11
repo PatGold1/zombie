@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://pfvhg4b03vd"]
+
+[ext_resource type="Script" path="res://Scripts/pickup.gd" id="1_wk13n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uoaed"]
+radius = 17.7432
+
+[node name="Item" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+script = ExtResource("1_wk13n")
+key = "stick"
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.285, 0)
+shape = SubResource("CircleShape2D_uoaed")

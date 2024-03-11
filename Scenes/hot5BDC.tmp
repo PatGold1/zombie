@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsfiroai1wy5x"]
+
+[ext_resource type="Script" path="res://Scripts/hotbar.gd" id="1_76e38"]
+
+[node name="Hotbar" type="Node2D"]
+
+[node name="Hotbar" type="GridContainer" parent="."]
+script = ExtResource("1_76e38")

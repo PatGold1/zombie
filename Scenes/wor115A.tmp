@@ -1,0 +1,259 @@
+[gd_scene load_steps=17 format=3 uid="uid://thcn6q3xjpc3"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_rjyex"]
+[ext_resource type="Texture2D" uid="uid://njxfcelvr6mu" path="res://Assets/Spritesheets/player_spritesheet.png" id="2_0gjgw"]
+[ext_resource type="Texture2D" uid="uid://dfa6xowwfnhb0" path="res://Assets/Spritesheets/dirt_grass.png" id="3_eg3yg"]
+[ext_resource type="Texture2D" uid="uid://5ogrg5pvkwnd" path="res://Assets/Images/stick.png" id="4_bgxw0"]
+
+[sub_resource type="GDScript" id="GDScript_hkrl1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yie43"]
+radius = 7.0
+height = 18.0
+
+[sub_resource type="Animation" id="Animation_dvjgo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6xu6y"]
+resource_name = "idle_down"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.1, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_2h0es"]
+resource_name = "idle_left"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 5, 7]
+}
+
+[sub_resource type="Animation" id="Animation_neqnt"]
+resource_name = "idle_right"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [11, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_rv5s7"]
+resource_name = "walk_down"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mxkuf"]
+_data = {
+"RESET": SubResource("Animation_dvjgo"),
+"idle_down": SubResource("Animation_6xu6y"),
+"idle_left": SubResource("Animation_2h0es"),
+"idle_right": SubResource("Animation_neqnt"),
+"walk_down": SubResource("Animation_rv5s7")
+}
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xtw4a"]
+texture = ExtResource("3_eg3yg")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ty5yg"]
+sources/1 = SubResource("TileSetAtlasSource_xtw4a")
+
+[sub_resource type="GDScript" id="GDScript_s5d77"]
+script/source = "extends Area2D
+
+@export var key: String
+
+func _ready():
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_81hfb"]
+radius = 20.8796
+
+[node name="World" type="Node2D"]
+script = SubResource("GDScript_hkrl1")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+z_index = 1
+position = Vector2(-55, -8)
+script = ExtResource("1_rjyex")
+
+[node name="Body" type="Sprite2D" parent="Player"]
+z_index = 1
+position = Vector2(57, 5)
+texture = ExtResource("2_0gjgw")
+hframes = 13
+vframes = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(55, 9)
+shape = SubResource("CapsuleShape2D_yie43")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+libraries = {
+"": SubResource("AnimationLibrary_mxkuf")
+}
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+visible = false
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(-62, -39)
+tile_set = SubResource("TileSet_ty5yg")
+format = 2
+layer_0/tile_data = PackedInt32Array(65536, 262145, 4, 131072, 262145, 5, 65537, 327681, 4, 131073, 327681, 5, 196608, 262145, 4, 262144, 262145, 5, 196609, 327681, 4, 262145, 327681, 5, 196610, 262145, 4, 262146, 262145, 5, 196611, 327681, 4, 262147, 327681, 5, 0, 262145, 5, 1, 327681, 5, 2, 262145, 5, 65538, 262145, 4, 3, 327681, 5, 65539, 327681, 4, 4, 262145, 5, 65540, 262145, 4, 5, 327681, 5, 65541, 327681, 4, 131074, 262145, 5, 131075, 327681, 5, 131076, 262145, 5, 196612, 262145, 4, 131077, 327681, 5, 196613, 327681, 4, 131078, 262145, 5, 196614, 262145, 4, 131079, 327681, 5, 196615, 327681, 4, 327684, 262145, 4, 393220, 262145, 5, 327685, 327681, 4, 393221, 327681, 5, 262148, 262145, 5, 262149, 327681, 5, 327680, 262145, 4, 393216, 262145, 5, 327681, 327681, 4, 393217, 327681, 5, 327682, 262145, 4, 393218, 262145, 5, 327683, 327681, 4, 393219, 327681, 5, 327686, 262145, 4, 393222, 262145, 5, 327687, 327681, 4, 393223, 327681, 5, 262150, 262145, 5, 262151, 327681, 5, 196616, 262145, 4, 262152, 262145, 5, 196617, 327681, 4, 262153, 327681, 5, 65544, 262145, 4, 131080, 262145, 5, 65545, 327681, 4, 131081, 327681, 5, 65542, 262145, 4, 65543, 327681, 4, -65530, 262145, 4, 6, 262145, 5, -65529, 327681, 4, 7, 327681, 5, -65532, 262145, 4, -65531, 327681, 4, -65534, 262145, 4, -65533, 327681, 4, -65536, 262145, 4, -65535, 327681, 4, 131070, 262145, 4, 196606, 262145, 5, 131071, 327681, 4, 196607, 327681, 5, 262142, 262145, 4, 327678, 262145, 5, 262143, 327681, 4, 327679, 327681, 5, -2, 262145, 4, 65534, 262145, 5, 65535, 327681, 5, -1, 327681, 4, -65528, 262145, 4, 8, 262145, 5, 9, 327681, 5, -65527, 327681, 4, 327688, 262145, 4, 393224, 262145, 5, 393225, 327681, 5, 327689, 327681, 4, 393214, 262145, 4, 458750, 262145, 5, 458751, 327681, 5, 393215, 327681, 4)
+
+[node name="Stick" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+position = Vector2(56, 0)
+scale = Vector2(0.719999, 0.719999)
+texture = ExtResource("4_bgxw0")
+
+[node name="Area2D" type="Area2D" parent="Stick"]
+position = Vector2(1.38889, 0)
+script = SubResource("GDScript_s5d77")
+key = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stick/Area2D"]
+position = Vector2(-1.38889, 0)
+shape = SubResource("CircleShape2D_81hfb")
+
+[connection signal="body_entered" from="Stick/Area2D" to="Stick/Area2D" method="_on_body_entered"]
+[connection signal="hidden" from="Stick/Area2D/CollisionShape2D" to="Stick/Area2D" method="_on_collision_shape_2d_hidden"]

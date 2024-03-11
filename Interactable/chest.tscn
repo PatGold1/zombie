@@ -1,0 +1,75 @@
+[gd_scene load_steps=13 format=3 uid="uid://brdhrcx46ukkw"]
+
+[ext_resource type="Script" path="res://Interactable/chest.gd" id="1_53x6m"]
+[ext_resource type="Script" path="res://Inventory/inventory_data.gd" id="2_b7el1"]
+[ext_resource type="Resource" uid="uid://k5pcnxyoo0og" path="res://Item/Items/health_potion.tres" id="3_5cs5n"]
+[ext_resource type="Script" path="res://Inventory/slot_data.gd" id="4_x8lnb"]
+[ext_resource type="Texture2D" uid="uid://cihsxl7vnt4se" path="res://Assets/Spritesheets/chests.png" id="5_nx1wx"]
+
+[sub_resource type="Resource" id="Resource_p0yxh"]
+script = ExtResource("4_x8lnb")
+item_data = ExtResource("3_5cs5n")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_kyeit"]
+script = ExtResource("2_b7el1")
+slot_datas = Array[ExtResource("4_x8lnb")]([SubResource("Resource_p0yxh")])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqcex"]
+size = Vector2(123.895, 74.8348)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7le77"]
+load_path = "res://.godot/imported/chests.png-de2b76b9b7a3c845fb2d18ccbb0173b9.ctex"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gea00"]
+texture = ExtResource("5_nx1wx")
+6:6/size_in_atlas = Vector2i(6, 6)
+6:6/0 = 0
+6:6/0/z_index = 1
+6:6/0/y_sort_origin = 8
+6:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:6/0/physics_layer_0/angular_velocity = 0.0
+6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-33.9411, -12.0208, 34.6482, -11.3137, 35.3553, 33.9411, -33.9411, 33.9411)
+
+[sub_resource type="TileSet" id="TileSet_ep5as"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_gea00")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2oxaf"]
+size = Vector2(45, 27)
+
+[node name="Chest" type="Area2D" groups=["external_inventory"]]
+script = ExtResource("1_53x6m")
+inventory_data = SubResource("Resource_kyeit")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+z_index = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+y_sort_enabled = true
+position = Vector2(-7.40157e-07, 8.46641)
+rotation = -3.14159
+scale = Vector2(0.346622, 0.386623)
+shape = SubResource("RectangleShape2D_dqcex")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+visible = false
+y_sort_enabled = true
+scale = Vector2(0.635833, 0.635833)
+texture = SubResource("CompressedTexture2D_7le77")
+hframes = 2
+vframes = 2
+frame = 3
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_ep5as")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(65535, 393216, 6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 7.5)
+shape = SubResource("RectangleShape2D_2oxaf")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
