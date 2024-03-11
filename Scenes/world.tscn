@@ -199,10 +199,10 @@ offset_right = 74.0
 offset_bottom = 74.0
 
 [node name="HotBarInventory" parent="UI" instance=ExtResource("5_micc5")]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 430.0
-offset_bottom = 90.0
+offset_left = 120.0
+offset_top = 155.0
+offset_right = 540.0
+offset_bottom = 235.0
 scale = Vector2(0.225533, 0.225533)
 
 [node name="Player" parent="." instance=ExtResource("6_ljyes")]
