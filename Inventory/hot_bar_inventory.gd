@@ -10,8 +10,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not visible or not event.is_pressed():
 		return
 		
-	#if range(KEY_1, KEY_7).has(event.keycode):
-		#hot_bar_use.emit(event.keycode - KEY_1)
+	if event is InputEventKey and range(KEY_1, KEY_7).has(event.keycode):
+		hot_bar_use.emit(event.keycode - KEY_1)
+
 		
 func set_inventory_data(inventory_data: InventoryData) -> void:
 	inventory_data.inventory_updated.connect(populate_hotbar)
