@@ -28,6 +28,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		#interact()
 
 func _physics_process(delta):
+	player_movement(delta)
+	
+func player_movement(delta):
 	var direction : Vector2 = Input.get_vector("left", "right", "up", "down").normalized()
 	if direction:
 		velocity = direction * speed

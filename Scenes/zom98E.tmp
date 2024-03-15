@@ -1,0 +1,100 @@
+[gd_scene load_steps=13 format=3 uid="uid://c0ouwjirjqmvg"]
+
+[ext_resource type="Texture2D" uid="uid://bwnoytlytsqjg" path="res://Assets/Spritesheets/Zombie-Sheet.png" id="1_ble81"]
+[ext_resource type="Script" path="res://Scenes/zombie.gd" id="1_cmdnp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3xg8"]
+atlas = ExtResource("1_ble81")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrb7t"]
+atlas = ExtResource("1_ble81")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cq4me"]
+atlas = ExtResource("1_ble81")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xygdh"]
+atlas = ExtResource("1_ble81")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cye3d"]
+atlas = ExtResource("1_ble81")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2o1k"]
+atlas = ExtResource("1_ble81")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lr6v"]
+atlas = ExtResource("1_ble81")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sydob"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j3xg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrb7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cq4me")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xygdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cye3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2o1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lr6v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m4vhd"]
+radius = 191.83
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y0016"]
+radius = 141.077
+height = 337.016
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_cmdnp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_sydob")
+frame_progress = 0.104599
+
+[node name="DetectionArea" type="Area2D" parent="."]
+scale = Vector2(1.20376, 1.84093)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+light_mask = 0
+position = Vector2(-1.53413, 0)
+scale = Vector2(0.318527, 0.225459)
+shape = SubResource("CircleShape2D_m4vhd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 0
+position = Vector2(-1, 0)
+scale = Vector2(0.0194748, -0.0215818)
+shape = SubResource("CapsuleShape2D_y0016")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
+
+[connection signal="area_shape_entered" from="DetectionArea" to="." method="_on_detection_area_area_shape_entered"]
+[connection signal="area_shape_exited" from="DetectionArea" to="." method="_on_detection_area_area_shape_exited"]
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boskede7vn4gx"
-path="res://.godot/imported/TX Tileset Wall.png-58b641b3bf61746591a9b82d7ea9e965.ctex"
+uid="uid://bsvp3dpp7fpv6"
+path="res://.godot/imported/inventory_highlight.png-fe158786f8ee7459a32c3ffe3d88b3be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Spritesheets/Pixel Art Top Down - Basic/Texture/TX Tileset Wall.png"
-dest_files=["res://.godot/imported/TX Tileset Wall.png-58b641b3bf61746591a9b82d7ea9e965.ctex"]
+source_file="res://Assets/Images/inventory_highlight.png"
+dest_files=["res://.godot/imported/inventory_highlight.png-fe158786f8ee7459a32c3ffe3d88b3be.ctex"]
 
 [params]
 

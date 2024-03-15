@@ -21,6 +21,8 @@ PlayerManager="*res://Player/player_manager.gd"
 
 [display]
 
+window/size/viewport_width=1200
+window/size/viewport_height=650
 window/stretch/scale=3.5
 
 [input]

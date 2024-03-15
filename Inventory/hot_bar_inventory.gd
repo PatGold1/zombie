@@ -5,6 +5,8 @@ signal hot_bar_use(index: int)
 const Slot = preload("res://Inventory/slot.tscn")
 
 @onready var h_box_container = $MarginContainer/HBoxContainer
+@onready var texture_rect = $MarginContainer/TextureRect
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not visible or not event.is_pressed():

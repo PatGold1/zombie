@@ -161,8 +161,10 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-25, -55)
 
 [node name="Player" type="CharacterBody2D"]
+light_mask = 3
 y_sort_enabled = true
 position = Vector2(-55, -8)
+scale = Vector2(1.00252, 1)
 script = ExtResource("1_2b53j")
 inventory_data = ExtResource("2_ds7w5")
 
@@ -184,7 +186,7 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
+position = Vector2(54, 7)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 

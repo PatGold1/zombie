@@ -1,20 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjgi53u3gwakm"]
+[gd_scene load_steps=4 format=3 uid="uid://bjgi53u3gwakm"]
 
 [ext_resource type="Script" path="res://Item/Pick_Up/pick_up.gd" id="1_658x6"]
+[ext_resource type="Texture2D" uid="uid://i8nac2h7k441" path="res://Assets/Spritesheets/shadows.png" id="2_qjiru"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1tlf0"]
 radius = 16.2788
 
-[node name="Area2D" type="Area2D"]
+[node name="Area" type="Area2D"]
 scale = Vector2(3.26855, 3.23443)
 collision_layer = 2
 script = ExtResource("1_658x6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 scale = Vector2(0.279201, 0.282146)
 shape = SubResource("CircleShape2D_1tlf0")
 
+[node name="Item" type="Sprite2D" parent="."]
+scale = Vector2(0.17, 0.171)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.198, 0.2)
+modulate = Color(1, 1, 1, 0.490196)
+self_modulate = Color(1, 1, 1, 0.505882)
+position = Vector2(-0.305946, 2.47339)
+scale = Vector2(0.449297, 0.449297)
+texture = ExtResource("2_qjiru")
+hframes = 2
+vframes = 2
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
