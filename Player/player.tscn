@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dw1qqjvnwesmh"]
+[gd_scene load_steps=27 format=3 uid="uid://dw1qqjvnwesmh"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_2b53j"]
 [ext_resource type="Resource" uid="uid://b3u42s5lue453" path="res://test_inv.tres" id="2_ds7w5"]
@@ -160,6 +160,8 @@ states/Walk/position = Vector2(633, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_bql2c"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_q644c"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_u7oun"), "Walk", "End", SubResource("AnimationNodeStateMachineTransition_djw16"), "Idle", "Swing", SubResource("AnimationNodeStateMachineTransition_oru4k"), "Swing", "Idle", SubResource("AnimationNodeStateMachineTransition_ula0g"), "Swing", "Walk", SubResource("AnimationNodeStateMachineTransition_mcmcw"), "Walk", "Swing", SubResource("AnimationNodeStateMachineTransition_bryr7")]
 graph_offset = Vector2(-25, -55)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bcfen"]
+
 [node name="Player" type="CharacterBody2D"]
 light_mask = 3
 y_sort_enabled = true
@@ -205,3 +207,20 @@ parameters/conditions/swing = false
 parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Swing/blend_position = Vector2(0, 0)
 parameters/Walk/blend_position = Vector2(0, 0)
+
+[node name="PlayerHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
+position = Vector2(53.864, 7)
+scale = Vector2(1.125, 1.2)
+shape = SubResource("CapsuleShape2D_bcfen")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="DealAttackCooldown" type="Timer" parent="."]
+
+[connection signal="body_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="PlayerHitbox" to="." method="_on_player_hitbox_body_exited"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="DealAttackCooldown" to="." method="_on_deal_attack_cooldown_timeout"]
