@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var label = $Label
+
 var speed = 10
 var player_chase = false
 var player = null
@@ -11,6 +13,7 @@ var can_take_damage = true
 func _physics_process(delta):
 	deal_with_damage()
 	movement_logic(delta)
+	zombie_health(health)
 	
 func movement_logic(delta):
 	if player_chase:
@@ -64,4 +67,8 @@ func apply_knockback():
 	move_and_collide(Vector2(0,0)) 
 	#position += knockback_direction * 100
 	$AnimatedSprite2D.play("knockback")
-
+	
+func zombie_health(health):
+	# convert health from int to string
+	health = str(health)
+	label.set_text(health)

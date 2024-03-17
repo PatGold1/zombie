@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://c0ouwjirjqmvg"]
 
 [ext_resource type="Texture2D" uid="uid://bwnoytlytsqjg" path="res://Assets/Spritesheets/Zombie-Sheet.png" id="1_ble81"]
-[ext_resource type="Script" path="res://Scenes/zombie.gd" id="1_cmdnp"]
+[ext_resource type="Script" path="res://Enemies/zombie.gd" id="1_cmdnp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j3xg8"]
 atlas = ExtResource("1_ble81")
@@ -105,6 +105,13 @@ shape = SubResource("CapsuleShape2D_y0016")
 
 [node name="TakeDamageCooldown" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="Label" type="Label" parent="."]
+offset_left = -12.0
+offset_top = -24.0
+offset_right = 28.0
+offset_bottom = -0.999998
+scale = Vector2(0.608117, 0.608117)
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

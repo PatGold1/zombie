@@ -1,6 +1,7 @@
 extends Node2D
 
 const PickUp = preload("res://item/Pick_Up/pick_up.tscn")
+const Zombie = preload("res://Enemies/zombie.tscn")
 
 @onready var player = $Player
 @onready var inventory_interface = $UI/InventoryInterface
@@ -14,6 +15,8 @@ func _ready() -> void:
 	inventory_interface.set_equip_inventory_data(player.equip_inventory_data)
 	inventory_interface.force_close.connect(toggle_inventory_interface)
 	hot_bar_inventory.set_inventory_data(player.inventory_data)
+
+	execute_zombies()
 	
 	for node in get_tree().get_nodes_in_group("external_inventory"):
 		node.toggle_inventory.connect(toggle_inventory_interface)
@@ -37,3 +40,19 @@ func _on_inventory_interface_drop_slot_data(slot_data):
 	pick_up.slot_data = slot_data
 	pick_up.position = Vector2.UP
 	add_child(pick_up)
+
+func execute_zombies():
+	var wave_count = 1
+	while true:
+		for i in range(wave_count):
+			spawn_zombie()
+		wave_count += 1
+		await get_tree().create_timer(3.0).timeout
+	
+func spawn_zombie():
+	var object = Zombie.instantiate()
+	var random_x = randf_range(-30, 30)  # replace with your desired range
+	var random_y = randf_range(-30, 30) 
+	object.position = Vector2(random_x, random_y)
+	add_child(object)
+
