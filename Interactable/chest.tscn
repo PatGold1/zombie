@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://k5pcnxyoo0og" path="res://Item/Items/health_potion.tres" id="3_5cs5n"]
 [ext_resource type="Script" path="res://Inventory/slot_data.gd" id="4_x8lnb"]
 [ext_resource type="Texture2D" uid="uid://cihsxl7vnt4se" path="res://Assets/Spritesheets/chests.png" id="5_nx1wx"]
+[ext_resource type="Texture2D" uid="uid://dtlthbsqe626l" path="res://Assets/Spritesheets/2D Pixel Dungeon Asset Pack/items and trap_animation/torch/torch_1.png" id="5_q0mju"]
 
 [sub_resource type="Resource" id="Resource_p0yxh"]
 script = ExtResource("4_x8lnb")
@@ -17,9 +18,6 @@ slot_datas = Array[ExtResource("4_x8lnb")]([SubResource("Resource_p0yxh")])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqcex"]
 size = Vector2(123.895, 74.8348)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7le77"]
-load_path = "res://.godot/imported/chests.png-de2b76b9b7a3c845fb2d18ccbb0173b9.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gea00"]
 texture = ExtResource("5_nx1wx")
@@ -57,7 +55,7 @@ shape = SubResource("RectangleShape2D_dqcex")
 visible = false
 y_sort_enabled = true
 scale = Vector2(0.635833, 0.635833)
-texture = SubResource("CompressedTexture2D_7le77")
+texture = ExtResource("5_q0mju")
 hframes = 2
 vframes = 2
 frame = 3

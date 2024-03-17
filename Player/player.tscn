@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dw1qqjvnwesmh"]
+[gd_scene load_steps=28 format=3 uid="uid://dw1qqjvnwesmh"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_2b53j"]
 [ext_resource type="Resource" uid="uid://b3u42s5lue453" path="res://test_inv.tres" id="2_ds7w5"]
@@ -91,6 +91,22 @@ tracks/0/keys = {
 "values": [16, 17, 18, 19, 20]
 }
 
+[sub_resource type="Animation" id="Animation_e0n4j"]
+resource_name = "sword_swipe"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [52, 53, 54, 55, 56, 57, 58, 59]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mxkuf"]
 _data = {
 "RESET": SubResource("Animation_dvjgo"),
@@ -98,6 +114,7 @@ _data = {
 "idle_left": SubResource("Animation_2h0es"),
 "idle_right": SubResource("Animation_neqnt"),
 "idle_up": SubResource("Animation_w3jcj"),
+"sword_swipe": SubResource("Animation_e0n4j"),
 "walk_down": SubResource("Animation_47rde")
 }
 
@@ -164,6 +181,7 @@ graph_offset = Vector2(-25, -55)
 
 [node name="Player" type="CharacterBody2D"]
 light_mask = 3
+z_index = 1
 y_sort_enabled = true
 position = Vector2(-55, -8)
 scale = Vector2(1.00252, 1)
@@ -175,7 +193,7 @@ z_index = 1
 position = Vector2(57, 5)
 texture = ExtResource("3_4eirr")
 hframes = 13
-vframes = 14
+vframes = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(55, 13)
@@ -219,6 +237,15 @@ shape = SubResource("CapsuleShape2D_bcfen")
 wait_time = 0.5
 
 [node name="DealAttackCooldown" type="Timer" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 34.912
+offset_top = -30.0
+offset_right = 74.912
+offset_bottom = -7.0
+theme_override_colors/font_color = Color(0, 0.509804, 0, 1)
+text = "100"
+horizontal_alignment = 1
 
 [connection signal="body_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="PlayerHitbox" to="." method="_on_player_hitbox_body_exited"]

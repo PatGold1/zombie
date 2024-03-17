@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqghevfkrfo4v"]
+
+[ext_resource type="Texture2D" uid="uid://dtlthbsqe626l" path="res://Assets/Spritesheets/2D Pixel Dungeon Asset Pack/items and trap_animation/torch/torch_1.png" id="1_41hme"]
+
+[node name="torch" type="Node2D"]
+
+[node name="Torch1" type="Sprite2D" parent="."]
+position = Vector2(421, 286)
+scale = Vector2(30.25, 30.25)
+texture = ExtResource("1_41hme")
