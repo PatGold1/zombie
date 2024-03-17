@@ -46,7 +46,8 @@ func _on_area_2d_body_exited(body):
 func deal_with_damage():
 	if player_collision_range and PlayerManager.player_current_attack == true:
 		if can_take_damage == true:
-			health = health - 20
+			health -= 20
+			apply_knockback()
 			$TakeDamageCooldown.start()
 			can_take_damage = false
 			print("zombie heath = ", health)
@@ -55,3 +56,7 @@ func deal_with_damage():
 
 func _on_take_damage_cooldown_timeout():
 	can_take_damage = true
+	
+func apply_knockback():
+	print("get knocked")
+
