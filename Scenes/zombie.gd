@@ -4,6 +4,7 @@ var speed = 10
 var player_chase = false
 var player = null
 var health = 100
+@export var knock_back_amount = 10
 var player_collision_range = false
 var can_take_damage = true
 
@@ -58,5 +59,9 @@ func _on_take_damage_cooldown_timeout():
 	can_take_damage = true
 	
 func apply_knockback():
-	print("get knocked")
+	var knockback_direction = (position - player.position).normalized()
+	position += knockback_direction * knock_back_amount
+	move_and_collide(Vector2(0,0)) 
+	#position += knockback_direction * 100
+	$AnimatedSprite2D.play("knockback")
 
