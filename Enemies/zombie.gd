@@ -69,6 +69,5 @@ func apply_knockback():
 	$AnimatedSprite2D.play("knockback")
 	
 func zombie_health(health):
-	# convert health from int to string
 	health = str(health)
 	label.set_text(health)
