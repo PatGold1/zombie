@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://bgags1u6d2i57"]
+
+[ext_resource type="Texture2D" uid="uid://njl06dppshvo" path="res://Assets/Images/illumination1.png" id="1_50n6x"]
+[ext_resource type="Texture2D" uid="uid://dtlthbsqe626l" path="res://Assets/Spritesheets/2D Pixel Dungeon Asset Pack/items and trap_animation/torch/torch_1.png" id="1_hjs15"]
+[ext_resource type="Texture2D" uid="uid://lresean86n4m" path="res://Assets/Spritesheets/2D Pixel Dungeon Asset Pack/items and trap_animation/torch/torch_2.png" id="2_0qs4j"]
+[ext_resource type="Script" path="res://Scenes/torch.gd" id="2_ex0a3"]
+[ext_resource type="Texture2D" uid="uid://00cou1s6cids" path="res://Assets/Spritesheets/2D Pixel Dungeon Asset Pack/items and trap_animation/torch/torch_3.png" id="3_3ert1"]
+[ext_resource type="Texture2D" uid="uid://cvqphgxfxh5ml" path="res://Assets/Spritesheets/2D Pixel Dungeon Asset Pack/items and trap_animation/torch/torch_4.png" id="4_rjjqo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yora0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hjs15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0qs4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3ert1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rjjqo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Torch" type="PointLight2D"]
+color = Color(0.862745, 0.423529, 0.101961, 1)
+energy = 1.5
+texture = ExtResource("1_50n6x")
+script = ExtResource("2_ex0a3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yora0")
+frame_progress = 0.0219861

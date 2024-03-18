@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://c0ouwjirjqmvg"]
 
 [ext_resource type="Texture2D" uid="uid://bwnoytlytsqjg" path="res://Assets/Spritesheets/Zombie-Sheet.png" id="1_ble81"]
-[ext_resource type="Script" path="res://Scenes/zombie.gd" id="1_cmdnp"]
+[ext_resource type="Script" path="res://Enemies/zombie.gd" id="1_cmdnp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j3xg8"]
 atlas = ExtResource("1_ble81")
@@ -70,6 +70,12 @@ height = 337.016
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_cmdnp")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -19.0
+offset_top = -22.0
+offset_right = 21.0
+offset_bottom = 18.0
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_sydob")
@@ -103,11 +109,19 @@ position = Vector2(-1, 0)
 scale = Vector2(0.0694811, -0.0713041)
 shape = SubResource("CapsuleShape2D_y0016")
 
-[node name="TakeDamageCooldown" type="Timer" parent="."]
-wait_time = 0.5
+[node name="TakeDamage" type="Timer" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -11.0
+offset_top = -20.0
+offset_right = 29.0
+offset_bottom = 3.0
+scale = Vector2(0.567221, 0.567221)
+text = "0"
+horizontal_alignment = 1
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
-[connection signal="timeout" from="TakeDamageCooldown" to="." method="_on_take_damage_cooldown_timeout"]
+[connection signal="timeout" from="TakeDamage" to="." method="_on_take_damage_cooldown_timeout"]

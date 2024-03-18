@@ -15,9 +15,10 @@ func _ready() -> void:
 	sprite_2d.texture = slot_data.item_data.texture
 
 func _on_body_entered(body):
-	if body.inventory_data.pick_up_slot_data(slot_data):
-		queue_free()
-		print("1")
+	if body.has_method("player"):
+		if body.inventory_data.pick_up_slot_data(slot_data):
+			queue_free()
+			print("1")
 		
 func _process(delta: float) -> void:
 	time_passed += delta

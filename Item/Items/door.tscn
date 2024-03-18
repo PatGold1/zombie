@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://jldlfwlic724"]
+
+[ext_resource type="Texture2D" uid="uid://ri6hdk4uhhs7" path="res://Assets/Images/door.png" id="1_7d1r5"]
+[ext_resource type="Script" path="res://Item/Items/door.gd" id="2_vnkgx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_thk7g"]
+
+[node name="Door" type="Area2D"]
+scale = Vector2(0.863399, 0.855673)
+script = ExtResource("2_vnkgx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 14)
+scale = Vector2(-2.08899, -2.08899)
+shape = SubResource("CircleShape2D_thk7g")
+
+[node name="DoorSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_7d1r5")
+
+[node name="Label" type="Label" parent="DoorSprite"]
+visible = false
+offset_left = 10.4239
+offset_top = -10.518
+offset_right = 76.4239
+offset_bottom = 38.482
+scale = Vector2(0.223331, 0.223331)
+text = "too dark to 
+see keyhole"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

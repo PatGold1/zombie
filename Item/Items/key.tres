@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://du10pxhf77vrb"]
+
+[ext_resource type="Script" path="res://Item/item_data.gd" id="1_fkocs"]
+[ext_resource type="Texture2D" uid="uid://cmfwloso4agkp" path="res://Assets/Spritesheets/2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_2_1.png" id="2_2wf6d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbv2t"]
+atlas = ExtResource("2_2wf6d")
+region = Rect2(3.13517, 3.81094, 10.8104, 7.9727)
+
+[resource]
+script = ExtResource("1_fkocs")
+name = "Silver Key"
+description = "Can be used where it fits."
+stackable = false
+texture = SubResource("AtlasTexture_mbv2t")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://thcn6q3xjpc3"]
+[gd_scene load_steps=26 format=3 uid="uid://thcn6q3xjpc3"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_ow7cb"]
 [ext_resource type="PackedScene" uid="uid://ca3vf0fcpsaok" path="res://Inventory/inventory.tscn" id="1_wlgo8"]
@@ -17,7 +17,6 @@
 [ext_resource type="Resource" uid="uid://yd1nupc6rprb" path="res://Item/Items/apple.tres" id="15_v62se"]
 [ext_resource type="PackedScene" uid="uid://c0ouwjirjqmvg" path="res://Enemies/zombie.tscn" id="16_jjpkh"]
 [ext_resource type="PackedScene" uid="uid://bgags1u6d2i57" path="res://Scenes/torch.tscn" id="17_dop23"]
-[ext_resource type="PackedScene" uid="uid://jldlfwlic724" path="res://Item/Items/door.tscn" id="18_fohjc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u8sw4"]
 texture = ExtResource("2_3fubj")
@@ -939,7 +938,6 @@ scale = Vector2(0.225533, 0.225533)
 metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("6_ljyes")]
-z_index = 0
 z_as_relative = false
 equip_inventory_data = SubResource("Resource_2u108")
 
@@ -949,12 +947,11 @@ slot_data = SubResource("Resource_yucbu")
 
 [node name="Chest" parent="." instance=ExtResource("13_dckhx")]
 z_as_relative = false
-position = Vector2(173, 14)
+position = Vector2(-67, -38)
 scale = Vector2(0.273473, 0.273473)
 inventory_data = SubResource("Resource_2gldg")
 
 [node name="Enemy" parent="." instance=ExtResource("16_jjpkh")]
-visible = false
 position = Vector2(131, 5)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -972,15 +969,6 @@ horizontal_alignment = 1
 z_index = 1
 y_sort_enabled = true
 position = Vector2(-90, -55)
-
-[node name="Torch2" parent="." instance=ExtResource("17_dop23")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(165, -52)
-
-[node name="Door" parent="." instance=ExtResource("18_fohjc")]
-z_index = 1
-position = Vector2(39, -48)
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]
