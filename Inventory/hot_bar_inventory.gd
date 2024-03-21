@@ -1,11 +1,13 @@
 extends PanelContainer
 
+#SIGNAL EMITTED WHEN A HOT BAR ITEM IS USED
 signal hot_bar_use(index: int)
 
 const Slot = preload("res://Inventory/slot.tscn")
+var selected_slot_index = 0
 
 @onready var h_box_container = $MarginContainer/HBoxContainer
-@onready var texture_rect = $MarginContainer/TextureRect
+@onready var texture_rect = $MarginContainer/HBoxContainer/TextureRect
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -15,6 +17,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and range(KEY_1, KEY_7).has(event.keycode):
 		hot_bar_use.emit(event.keycode - KEY_1)
 
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
+			scroll_hotbar(-1)  # Scroll up
+			
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
+			scroll_hotbar(1)   # Scroll down
 		
 func set_inventory_data(inventory_data: InventoryData) -> void:
 	inventory_data.inventory_updated.connect(populate_hotbar)
@@ -31,3 +39,24 @@ func populate_hotbar(inventory_data: InventoryData) -> void:
 		
 		if slot_data:
 			slot.set_slot_data(slot_data)
+
+func _select_slot(index: int) -> void:
+	selected_slot_index = index
+	for i in range(h_box_container.get_child_count()):
+		var slot = h_box_container.get_child(i)
+		slot.highlight(i == index)
+		
+func scroll_hotbar(direction: int) -> void:
+	selected_slot_index = (selected_slot_index + direction) % h_box_container.get_child_count()
+
+	if selected_slot_index < 0:
+		selected_slot_index = h_box_container.get_child_count() - 1
+	
+	# Iterate through all slots in the hotbar
+	for i in range(h_box_container.get_child_count()):
+		var slot = h_box_container.get_child(i)
+
+		if i == selected_slot_index:
+			print(h_box_container.get_child(selected_slot_index))
+			
+

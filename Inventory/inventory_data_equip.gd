@@ -5,7 +5,8 @@ var item_equipped = false
 
 func drop_slot_data(grabbed_slot_data: SlotData, index: int) -> SlotData:
 	if not grabbed_slot_data.item_data is ItemDataEquip:
-		var item_equipped = true
+		item_equipped = true
+		print("i just equpped", item_equipped)
 		return grabbed_slot_data
 	return super.drop_slot_data(grabbed_slot_data, index)
 	

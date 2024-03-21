@@ -52,7 +52,7 @@ func _on_inventory_interface_drop_slot_data(slot_data):
 			#spawn_zombie()
 		#wave_count += 1
 		#await get_tree().create_timer(3.0).timeout
-	
+	#
 #func spawn_zombie():
 	#var object = Zombie.instantiate()
 	#var random_x = randf_range(-30, 30)  # replace with your desired range

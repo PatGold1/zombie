@@ -4,13 +4,17 @@ const Slot = preload("res://Inventory/slot.tscn")
 
 @onready var item_grid = $MarginContainer/ItemGrid
 
+#CONNECTS INVENTORY_DATA TO POPULATE ITEM GRID
 func set_inventory_data(inventory_data: InventoryData) -> void:
 	inventory_data.inventory_updated.connect(populate_item_grid)
 	populate_item_grid(inventory_data)
 	
+#DISCONNECTS INVENTORY_DATA TO PREVENT ISSUES
 func clear_inventory_data(inventory_data: InventoryData) -> void:
 	inventory_data.inventory_updated.disconnect(populate_item_grid)
+	
 
+#LOGIC FOR INVENTORY DISPLAY. THIS IS WHAT POPULATES THE ITEM GRIDS
 func populate_item_grid(inventory_data: InventoryData) -> void:
 	for child in item_grid.get_children():
 		child.queue_free()

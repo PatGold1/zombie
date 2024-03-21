@@ -32,10 +32,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("inventory"):
 		#get_tree().paused = true
 		toggle_inventory.emit()
-		
-	if Input.is_action_just_pressed("interact"):
-		print("open chesty boi")
-		toggle_external_inventory.emit(self)
 
 func _physics_process(delta):
 	player_movement(delta)
@@ -76,7 +72,7 @@ func update_sprite_direction(direction):
 		#animation_player.play("walk_down")
 	if direction.x < 0:
 		sprite.scale.x = -1  # Flip the sprite if facing left
-	else:
+	elif direction.x > 0:
 		sprite.scale.x = 1
 
 func heal(heal_value) -> void:	

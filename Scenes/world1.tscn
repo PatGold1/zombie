@@ -1,0 +1,133 @@
+[gd_scene load_steps=21 format=3 uid="uid://c4vbxw17w4ejd"]
+
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_ow7cb"]
+[ext_resource type="PackedScene" uid="uid://ca3vf0fcpsaok" path="res://Inventory/inventory.tscn" id="1_wlgo8"]
+[ext_resource type="Script" path="res://Inventory/inventory_interface.gd" id="2_fuv11"]
+[ext_resource type="PackedScene" uid="uid://bjed5ae008m7w" path="res://Scenes/cave.tscn" id="2_tp4vx"]
+[ext_resource type="PackedScene" uid="uid://dwlv1xjpnegqp" path="res://Inventory/slot.tscn" id="4_567qb"]
+[ext_resource type="PackedScene" uid="uid://minqw8nk33mo" path="res://Inventory/hot_bar_inventory.tscn" id="5_micc5"]
+[ext_resource type="PackedScene" uid="uid://dw1qqjvnwesmh" path="res://Player/player.tscn" id="6_ljyes"]
+[ext_resource type="Script" path="res://Inventory/inventory_data_equip.gd" id="8_lr4pq"]
+[ext_resource type="PackedScene" uid="uid://bjgi53u3gwakm" path="res://Item/Pick_Up/pick_up.tscn" id="10_e5385"]
+[ext_resource type="Resource" uid="uid://bele4ixmfb1jt" path="res://Item/Items/stone_sword.tres" id="11_dklfp"]
+[ext_resource type="Script" path="res://Inventory/slot_data.gd" id="12_3dqiq"]
+[ext_resource type="PackedScene" uid="uid://brdhrcx46ukkw" path="res://Interactable/chest.tscn" id="13_dckhx"]
+[ext_resource type="Script" path="res://Inventory/inventory_data.gd" id="14_kkqww"]
+[ext_resource type="Resource" uid="uid://yd1nupc6rprb" path="res://Item/Items/apple.tres" id="15_v62se"]
+[ext_resource type="PackedScene" uid="uid://c0ouwjirjqmvg" path="res://Enemies/zombie.tscn" id="16_jjpkh"]
+[ext_resource type="PackedScene" uid="uid://jldlfwlic724" path="res://Item/Items/door.tscn" id="18_fohjc"]
+
+[sub_resource type="Resource" id="Resource_2u108"]
+script = ExtResource("8_lr4pq")
+slot_datas = Array[ExtResource("12_3dqiq")]([null])
+
+[sub_resource type="Resource" id="Resource_yucbu"]
+script = ExtResource("12_3dqiq")
+item_data = ExtResource("11_dklfp")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_gk13o"]
+script = ExtResource("12_3dqiq")
+item_data = ExtResource("15_v62se")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_2gldg"]
+script = ExtResource("14_kkqww")
+slot_datas = Array[ExtResource("12_3dqiq")]([SubResource("Resource_gk13o"), null, null, null, null, null])
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+position = Vector2(0, -2)
+script = ExtResource("1_ow7cb")
+
+[node name="Cave" parent="." instance=ExtResource("2_tp4vx")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryInterface" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.360003, 0.360003)
+script = ExtResource("2_fuv11")
+
+[node name="PlayerInventory" parent="UI/InventoryInterface" instance=ExtResource("1_wlgo8")]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 50.0
+offset_bottom = 50.0
+
+[node name="EquipInventory" parent="UI/InventoryInterface" instance=ExtResource("1_wlgo8")]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 10.0
+offset_right = 490.0
+offset_bottom = 50.0
+
+[node name="ExternalInventory" parent="UI/InventoryInterface" instance=ExtResource("1_wlgo8")]
+visible = false
+layout_mode = 0
+offset_left = 291.664
+offset_top = 16.6665
+offset_right = 331.664
+offset_bottom = 56.6665
+
+[node name="GrabbedSlot" parent="UI/InventoryInterface" instance=ExtResource("4_567qb")]
+visible = false
+modulate = Color(1, 1, 1, 0.513726)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 74.0
+offset_bottom = 74.0
+
+[node name="HotBarInventory" parent="UI" instance=ExtResource("5_micc5")]
+offset_left = 120.0
+offset_top = 155.0
+offset_right = 540.0
+offset_bottom = 235.0
+scale = Vector2(0.225533, 0.225533)
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" parent="." instance=ExtResource("6_ljyes")]
+z_index = 0
+z_as_relative = false
+equip_inventory_data = SubResource("Resource_2u108")
+
+[node name="Pickup" parent="." instance=ExtResource("10_e5385")]
+visible = false
+position = Vector2(62, 0)
+slot_data = SubResource("Resource_yucbu")
+
+[node name="Chest" parent="." instance=ExtResource("13_dckhx")]
+z_as_relative = false
+position = Vector2(173, 14)
+scale = Vector2(0.273473, 0.273473)
+inventory_data = SubResource("Resource_2gldg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+texture_filter = 1
+offset_left = 78.0
+offset_top = 152.0
+offset_right = 118.0
+offset_bottom = 175.0
+text = "0"
+horizontal_alignment = 1
+
+[node name="Door" parent="." instance=ExtResource("18_fohjc")]
+visible = false
+z_index = 1
+position = Vector2(39, -48)
+
+[node name="Enemy" parent="." instance=ExtResource("16_jjpkh")]
+z_index = 1
+position = Vector2(126, 4)
+
+[connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
+[connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]

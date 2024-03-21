@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://minqw8nk33mo"]
+[gd_scene load_steps=3 format=3 uid="uid://minqw8nk33mo"]
 
 [ext_resource type="Script" path="res://Inventory/hot_bar_inventory.gd" id="1_n0asq"]
+[ext_resource type="Texture2D" uid="uid://bsvp3dpp7fpv6" path="res://Assets/Images/inventory_highlight.png" id="2_yhjk1"]
 
 [node name="HotBarInventory" type="PanelContainer"]
 offset_right = 40.0
@@ -16,3 +17,8 @@ theme_override_constants/margin_bottom = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_yhjk1")
