@@ -177,6 +177,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-25, -55)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bcfen"]
+radius = 10.6401
 
 [node name="Player" type="CharacterBody2D"]
 light_mask = 3
@@ -228,8 +229,8 @@ parameters/Walk/blend_position = Vector2(0, 0)
 [node name="PlayerHitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
-position = Vector2(53.864, 7)
-scale = Vector2(1.125, 1.2)
+position = Vector2(54.8618, 10)
+scale = Vector2(0.767962, 0.709923)
 shape = SubResource("CapsuleShape2D_bcfen")
 
 [node name="AttackCooldown" type="Timer" parent="."]

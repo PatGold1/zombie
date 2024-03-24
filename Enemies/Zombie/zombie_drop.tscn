@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://bp1v0x1rfdc7v"]
+
+[ext_resource type="Script" path="res://Item/Pick_Up/pick_up.gd" id="1_yqsum"]
+[ext_resource type="Texture2D" uid="uid://i8nac2h7k441" path="res://Assets/Spritesheets/shadows.png" id="2_6ynns"]
+[ext_resource type="Resource" uid="uid://yd1nupc6rprb" path="res://Item/Items/apple.tres" id="2_i3yur"]
+[ext_resource type="Script" path="res://Inventory/slot_data.gd" id="3_rvuyp"]
+
+[sub_resource type="Resource" id="Resource_kk28g"]
+script = ExtResource("3_rvuyp")
+item_data = ExtResource("2_i3yur")
+quantity = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1tlf0"]
+radius = 16.2788
+
+[node name="Area" type="Area2D"]
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(3.26855, 3.23443)
+collision_layer = 2
+script = ExtResource("1_yqsum")
+slot_data = SubResource("Resource_kk28g")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+scale = Vector2(0.279201, 0.282146)
+shape = SubResource("CircleShape2D_1tlf0")
+
+[node name="Item" type="Sprite2D" parent="."]
+scale = Vector2(0.17, 0.171)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.490196)
+self_modulate = Color(1, 1, 1, 0.505882)
+position = Vector2(-0.305946, 2.47339)
+scale = Vector2(0.449297, 0.449297)
+texture = ExtResource("2_6ynns")
+hframes = 2
+vframes = 2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

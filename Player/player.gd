@@ -32,12 +32,18 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("inventory"):
 		#get_tree().paused = true
 		toggle_inventory.emit()
+	
+	if Input.is_action_just_pressed("attack"):
+		animation_player.play("sword_swipe")
+		PlayerManager.player_current_attack = true
+		$AttackCooldown.start()
+		attack_ip = true
+		
 
 func _physics_process(delta):
 	player_movement(delta)
-	enemy_attack()
-	attack()
 	player_health(health)
+	enemy_attack()
 	
 	if health <= 0:
 		player_alive = false #player dies
@@ -90,22 +96,14 @@ func _on_player_hitbox_body_exited(body):
 		enemy_collision_range = false
 
 func enemy_attack():
-	if attack_ip:
-		if enemy_collision_range and enemy_attack_cooldown == true:
-			health = health - 20
-			enemy_attack_cooldown = false
-			print(health)
+	if enemy_collision_range and enemy_attack_cooldown == true:
+		health = health - 20
+		enemy_attack_cooldown = false
+		print(health)
 
 func _on_attack_cooldown_timeout():
 	enemy_attack_cooldown = true
 	attack_ip = false
-	
-func attack():
-	if Input.is_action_just_pressed("attack"):
-		animation_player.play("sword_swipe")
-		PlayerManager.player_current_attack = true
-		$AttackCooldown.start()
-		attack_ip = true
 	
 func player_health(health):
 	health = str(health)

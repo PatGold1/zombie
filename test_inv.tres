@@ -1,43 +1,7 @@
-[gd_resource type="Resource" script_class="InventoryData" load_steps=13 format=3 uid="uid://b3u42s5lue453"]
+[gd_resource type="Resource" script_class="InventoryData" load_steps=2 format=3 uid="uid://b3u42s5lue453"]
 
 [ext_resource type="Script" path="res://Inventory/inventory_data.gd" id="1_iwom2"]
-[ext_resource type="Script" path="res://Inventory/slot_data.gd" id="3_3owq6"]
-[ext_resource type="Resource" uid="uid://cvgkroqac8jjt" path="res://Item/Items/wood_sword.tres" id="4_8tgyt"]
-[ext_resource type="Script" path="res://Item/item_data.gd" id="4_52hxh"]
-[ext_resource type="Texture2D" uid="uid://bysg1gmr8p18s" path="res://Item/#1 - Transparent Icons.png" id="5_qmihq"]
-[ext_resource type="Resource" uid="uid://bele4ixmfb1jt" path="res://Item/Items/stone_sword.tres" id="6_6cc3e"]
-
-[sub_resource type="Resource" id="Resource_ipaa3"]
-script = ExtResource("3_3owq6")
-item_data = ExtResource("4_8tgyt")
-quantity = 1
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m8ied"]
-atlas = ExtResource("5_qmihq")
-region = Rect2(0, 448, 32, 32)
-
-[sub_resource type="Resource" id="Resource_d2a7x"]
-script = ExtResource("4_52hxh")
-name = "Apple"
-description = "A juicy apple."
-stackable = true
-texture = SubResource("AtlasTexture_m8ied")
-
-[sub_resource type="Resource" id="Resource_e3lkj"]
-script = ExtResource("3_3owq6")
-item_data = SubResource("Resource_d2a7x")
-quantity = 3
-
-[sub_resource type="Resource" id="Resource_chjr8"]
-script = ExtResource("3_3owq6")
-item_data = SubResource("Resource_d2a7x")
-quantity = 3
-
-[sub_resource type="Resource" id="Resource_ub32n"]
-script = ExtResource("3_3owq6")
-item_data = ExtResource("6_6cc3e")
-quantity = 1
 
 [resource]
 script = ExtResource("1_iwom2")
-slot_datas = Array[ExtResource("3_3owq6")]([SubResource("Resource_ipaa3"), SubResource("Resource_e3lkj"), SubResource("Resource_chjr8"), SubResource("Resource_ub32n"), null, null, null, null, null, null, null, null, null, null, null, null])
+slot_datas = Array[Resource("res://Inventory/slot_data.gd")]([null, null, null, null, null, null, null, null, null, null, null, null])

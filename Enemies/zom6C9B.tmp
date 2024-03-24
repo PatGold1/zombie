@@ -1,0 +1,143 @@
+[gd_scene load_steps=17 format=3 uid="uid://c0ouwjirjqmvg"]
+
+[ext_resource type="Texture2D" uid="uid://bwnoytlytsqjg" path="res://Assets/Spritesheets/Zombie-Sheet.png" id="1_ble81"]
+[ext_resource type="Script" path="res://Enemies/zombie.gd" id="1_cmdnp"]
+[ext_resource type="PackedScene" uid="uid://bjgi53u3gwakm" path="res://Item/Pick_Up/pick_up.tscn" id="3_x6ai0"]
+[ext_resource type="Resource" uid="uid://du10pxhf77vrb" path="res://Item/Items/key.tres" id="4_2nnhc"]
+[ext_resource type="Script" path="res://Inventory/slot_data.gd" id="5_akvyn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3xg8"]
+atlas = ExtResource("1_ble81")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrb7t"]
+atlas = ExtResource("1_ble81")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cq4me"]
+atlas = ExtResource("1_ble81")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xygdh"]
+atlas = ExtResource("1_ble81")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cye3d"]
+atlas = ExtResource("1_ble81")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2o1k"]
+atlas = ExtResource("1_ble81")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lr6v"]
+atlas = ExtResource("1_ble81")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sydob"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j3xg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrb7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cq4me")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xygdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cye3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2o1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lr6v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m4vhd"]
+radius = 191.83
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y0016"]
+radius = 141.077
+height = 337.016
+
+[sub_resource type="Resource" id="Resource_1addv"]
+script = ExtResource("5_akvyn")
+item_data = ExtResource("4_2nnhc")
+quantity = 1
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_cmdnp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -19.0
+offset_top = -22.0
+offset_right = 21.0
+offset_bottom = 18.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_sydob")
+frame_progress = 0.198209
+
+[node name="DetectionArea" type="Area2D" parent="."]
+scale = Vector2(0.660471, 1.01007)
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+light_mask = 0
+position = Vector2(-1.53413, 0)
+scale = Vector2(0.318527, 0.225459)
+shape = SubResource("CircleShape2D_m4vhd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 0
+position = Vector2(-1, 0)
+scale = Vector2(0.0194748, -0.0215818)
+shape = SubResource("CapsuleShape2D_y0016")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-1, 0)
+scale = Vector2(-0.703165, -0.82673)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+light_mask = 0
+position = Vector2(-1, 0)
+scale = Vector2(0.0694811, -0.0713041)
+shape = SubResource("CapsuleShape2D_y0016")
+
+[node name="TakeDamage" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="Label" type="Label" parent="."]
+offset_left = -11.0
+offset_top = -20.0
+offset_right = 29.0
+offset_bottom = 3.0
+scale = Vector2(0.567221, 0.567221)
+text = "0"
+horizontal_alignment = 1
+
+[node name="Pickup" parent="." instance=ExtResource("3_x6ai0")]
+visible = false
+position = Vector2(62, 0)
+slot_data = SubResource("Resource_1addv")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="TakeDamage" to="." method="_on_take_damage_cooldown_timeout"]

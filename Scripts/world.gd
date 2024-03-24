@@ -1,7 +1,7 @@
 extends Node2D
 
 const PickUp = preload("res://item/Pick_Up/pick_up.tscn")
-const Zombie = preload("res://Enemies/zombie.tscn")
+const Zombie = preload("res://Enemies/Zombie/zombie.tscn")
 
 @onready var player = $Player
 @onready var inventory_interface = $UI/InventoryInterface

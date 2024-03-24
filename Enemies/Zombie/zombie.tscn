@@ -1,34 +1,34 @@
 [gd_scene load_steps=13 format=3 uid="uid://c0ouwjirjqmvg"]
 
-[ext_resource type="Texture2D" uid="uid://bwnoytlytsqjg" path="res://Assets/Spritesheets/Zombie-Sheet.png" id="1_ble81"]
-[ext_resource type="Script" path="res://Enemies/zombie.gd" id="1_cmdnp"]
+[ext_resource type="Script" path="res://Enemies/Zombie/zombie.gd" id="1_5jtur"]
+[ext_resource type="Texture2D" uid="uid://bwnoytlytsqjg" path="res://Assets/Spritesheets/Zombie-Sheet.png" id="2_yvq63"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j3xg8"]
-atlas = ExtResource("1_ble81")
+atlas = ExtResource("2_yvq63")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rrb7t"]
-atlas = ExtResource("1_ble81")
+atlas = ExtResource("2_yvq63")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cq4me"]
-atlas = ExtResource("1_ble81")
+atlas = ExtResource("2_yvq63")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xygdh"]
-atlas = ExtResource("1_ble81")
+atlas = ExtResource("2_yvq63")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cye3d"]
-atlas = ExtResource("1_ble81")
+atlas = ExtResource("2_yvq63")
 region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u2o1k"]
-atlas = ExtResource("1_ble81")
+atlas = ExtResource("2_yvq63")
 region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2lr6v"]
-atlas = ExtResource("1_ble81")
+atlas = ExtResource("2_yvq63")
 region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sydob"]
@@ -68,7 +68,7 @@ radius = 141.077
 height = 337.016
 
 [node name="Enemy" type="CharacterBody2D"]
-script = ExtResource("1_cmdnp")
+script = ExtResource("1_5jtur")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -19.0
@@ -82,7 +82,7 @@ sprite_frames = SubResource("SpriteFrames_sydob")
 frame_progress = 0.198209
 
 [node name="DetectionArea" type="Area2D" parent="."]
-scale = Vector2(1.20376, 1.84093)
+scale = Vector2(1.42044, 2.17231)
 collision_layer = 2
 collision_mask = 3
 
@@ -102,6 +102,8 @@ shape = SubResource("CapsuleShape2D_y0016")
 visible = false
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-1, 0)
+scale = Vector2(-0.703165, -0.82673)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 light_mask = 0
@@ -110,6 +112,7 @@ scale = Vector2(0.0694811, -0.0713041)
 shape = SubResource("CapsuleShape2D_y0016")
 
 [node name="TakeDamage" type="Timer" parent="."]
+wait_time = 0.2
 
 [node name="Label" type="Label" parent="."]
 offset_left = -11.0

@@ -1,13 +1,15 @@
 extends CharacterBody2D
 
+const world = preload("res://Scenes/world1.tscn")
+var zombie_drop = preload("res://Enemies/Zombie/zombie_drop.tscn")
+
 @onready var label = $Label
-const world = preload("res://Scenes/world.tscn")
 
 var speed = 10
 var player_chase = false
 var player = null
 var health = 50
-@export var knock_back_amount = 20
+@export var knock_back_amount = 10
 var player_collision_range = false
 var can_take_damage = true
 @onready var take_damage = $TakeDamage
@@ -36,7 +38,12 @@ func movement_logic(delta):
 		
 func _on_detection_area_body_entered(body):
 	player = body
-	player_chase = true
+	if body.has_method("player"):
+		player_chase = true
+		print(player)
+
+func _on_detection_area_body_exited(body):
+		player_chase = false
 	
 func enemy():
 	pass
@@ -51,13 +58,14 @@ func _on_area_2d_body_exited(body):
 
 func deal_with_damage():
 	if player_collision_range and PlayerManager.player_current_attack == true:
-		if can_take_damage == true and Input.is_action_just_pressed("attack"):
+		if can_take_damage:
 			health -= 20
 			apply_knockback()
 			take_damage.start()
 			can_take_damage = false
 			print("zombie heath = ", health)
 			if health <= 0:
+				drop_item(global_position)
 				WorldStats.add_to_kill_counter()
 				self.queue_free()
 
@@ -73,3 +81,8 @@ func apply_knockback():
 func zombie_health(health):
 	health = str(health)
 	label.set_text(health)
+
+func drop_item(zombie_position):
+	var droppedItem = zombie_drop.instantiate()
+	droppedItem.global_position = zombie_position
+	get_tree().root.add_child(droppedItem)

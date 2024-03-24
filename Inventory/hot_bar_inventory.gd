@@ -8,7 +8,7 @@ var selected_slot_index = 0
 
 @onready var h_box_container = $MarginContainer/HBoxContainer
 @onready var texture_rect = $MarginContainer/HBoxContainer/TextureRect
-
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not visible or not event.is_pressed():
@@ -19,10 +19,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
-			scroll_hotbar(-1)  # Scroll up
+			scroll_hotbar(1)  # Scroll up
 			
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
-			scroll_hotbar(1)   # Scroll down
+			scroll_hotbar(-1)   # Scroll down
 		
 func set_inventory_data(inventory_data: InventoryData) -> void:
 	inventory_data.inventory_updated.connect(populate_hotbar)
@@ -52,11 +52,13 @@ func scroll_hotbar(direction: int) -> void:
 	if selected_slot_index < 0:
 		selected_slot_index = h_box_container.get_child_count() - 1
 	
-	# Iterate through all slots in the hotbar
 	for i in range(h_box_container.get_child_count()):
-		var slot = h_box_container.get_child(i)
-
 		if i == selected_slot_index:
-			print(h_box_container.get_child(selected_slot_index))
 			
+			var selected_panel = h_box_container.get_child(selected_slot_index)
+			selected_panel.modulate = Color(255, 255, 255)  # Set color to white
+			#hot_bar_use.emit(selected_slot_index)
+		else:
+			var non_selected_panel = h_box_container.get_child(i)
+			non_selected_panel.modulate = Color(1, 1, 1, 0.5)  # Set color to semi-transparent white
 
